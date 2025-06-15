@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>&lt;model-viewer&gt; template</title>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <!-- <model-viewer> HTML element -->
+    <model-viewer src="model_animation1.glb" ar ar-modes="scene-viewer webxr quick-look" camera-controls tone-mapping="neutral" poster="poster.png" shadow-intensity="1" camera-orbit="213.5deg 81.65deg 27.67m" field-of-view="30deg" auto-rotate animation-name="rise animation" autoplay id="lamp">
+
+      <button class="Hotspot" slot="hotspot-1" data-surface="1 0 77 89 78 0.274 0.533 0.193" data-visibility-attribute="visible"onMouseOver="addhotspot1()"
+      onMouseOut="removehotspot1()">
+          <div class="HotspotAnnotation" id="hotspot1" style="visibility:hidden">base</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-2" data-surface="0 0 424899 424265 424901 0.083 0.860 0.057" data-visibility-attribute="visible" onMouseOver="addhotspot2()"
+      onMouseOut="removehotspot2()">
+          <div class="HotspotAnnotation" id="hotspot2" style="visibility:hidden">wings</div>
+      </button>
+
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+      </div>
+      <button slot="ar-button" id="ar-button">
+          View in your space
+      </button>
+      <div id="ar-prompt">
+          <img src="ar_hand_prompt.png">
+      </div>
+
+      <div class="controls" style="position: absolute; bottom: 20px; right: 20px; background: #ececec; padding: 12px; border-radius: 10px; border: 1px solid #ccc;">
+      <h3 style="margin: 0 0 8px 0; color: rgb(98, 77, 115);">Candle Warmer</h3>
+      <div><strong>Variants:</strong>
+      <button onClick="VBtn01()">Amazing Grape</button>
+      <button onClick="VBtn02()">Cherry Beauty</button>
+      <button onClick="VBtn03()">Red Ruby</button>
+      </div>
+
+      <div><strong>Views:</strong>
+        <button onClick="setOrbit('-46.32deg 83.86deg 27.67m')">Front</button>
+        <button onClick="setOrbit('106.2deg 0.4925deg 25.41m')">Top</button>
+        <button onClick="setOrbit('206.2deg 84.46deg 23.42m')">Back</button>
+      </div>
+
+      <div><strong>Animations:</strong> 
+      <button id="default1Btn" onClick="Btn01()">Open Top</button>
+      <button id="default2Btn" onClick="Btn02()">Spin</button>
+      <button id="pauseBtn" onClick="pauseAnimation()">Pause Animation</button>
+      </div>
+    </div>
+
+  </model-viewer>  
+  <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <script>
+    function setOrbit(orbit) {
+      document.getElementById('lamp').cameraOrbit=orbit;
+    }
+  </script>
+
+  <script>
+   function addhotspot1(){
+     document.getElementById("hotspot1").style.visibility="visible"
+   }
+   function removehotspot1(){
+    document.getElementById("hotspot1").style.visibility="hidden"
+   }
+   function addhotspot2(){
+    document.getElementById("hotspot2").style.visibility="visible"
+   }
+   function removehotspot2(){
+    document.getElementById("hotspot2").style.visibility="hidden"
+   }
+  </script>
+
+  <script>
+    function VBtn01(){
+      document.getElementById('lamp').variantName="Red Ruby";
+       }
+    function VBtn02(){
+      document.getElementById('lamp').variantName="Cherry Beauty";
+       }
+    function VBtn03(){
+      document.getElementById('lamp').variantName="Amazing Grape";
+       }
+  </script>
+
+  <script>
+    //javascript that is call "Btn01()" and "Btn02()" that find the html element ID call "lamp" and play and loop the element with specific "animationName".
+      function Btn01(){
+      document.getElementById('lamp').pause();
+      document.getElementById('lamp').animationName ="rise animation";
+      document.getElementById('lamp').play();
+      }
+      function Btn02(){
+        document.getElementById('lamp').pause();
+        document.getElementById('lamp').animationName ="spin animation";
+        document.getElementById('lamp').play();
+      }
+      function pauseAnimation(){
+        document.getElementById('lamp').pause();
+      }
+    </script>
+  </body>
+</html>
